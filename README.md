@@ -1,1 +1,134 @@
 # San-Valentin
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Ti 💘</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  overflow: hidden;
+}
+
+.card {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  max-width: 320px;
+  animation: fadeIn 2s ease;
+}
+
+h1 {
+  font-size: 22px;
+}
+
+p {
+  font-size: 16px;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+button {
+  border: none;
+  border-radius: 30px;
+  padding: 12px 25px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#yes {
+  background: #ff4d6d;
+  color: white;
+}
+
+#no {
+  background: white;
+  color: #ff4d6d;
+  position: absolute;
+}
+
+#message {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.heart {
+  position: absolute;
+  color: rgba(255,255,255,0.6);
+  font-size: 20px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); opacity: 1; }
+  to { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1 id="title"></h1>
+  <p>¿Te gustaría ser mi San Valentín? 💖</p>
+
+  <div class="buttons">
+    <button id="yes" onclick="accept()">Sí 💕</button>
+    <button id="no" onmouseover="moveNo()">No 😢</button>
+  </div>
+
+  <div id="message"></div>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const from = params.get("from") || "Alguien especial";
+const to = params.get("to") || "Persona hermosa";
+
+document.getElementById("title").innerText =
+  to + ", este mensaje es para ti 💌";
+
+function accept() {
+  document.getElementById("message").innerHTML =
+    "Desde que llegaste, todo se siente más bonito.<br><br>" +
+    "¿Aceptas escribir esta historia conmigo? ❤️<br><br>" +
+    "— " + from;
+}
+
+function moveNo() {
+  const btn = document.getElementById("no");
+  btn.style.top = Math.random() * 80 + "%";
+  btn.style.left = Math.random() * 80 + "%";
+}
+
+// Corazones flotando
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤";
+  heart.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 500);
+</script>
+
+</body>
+</html>

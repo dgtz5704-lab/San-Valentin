@@ -144,10 +144,7 @@
 
 <button class="btn btn-yes" onclick="irPantalla3()">¡sí! ❤️</button>
 
-<button id="btnNo" class="btn btn-no" onmouseover="moverBotonNo()"
-
-<button onclick="openModal()">si</button>
-<button onclick="No()">No🥱</button>
+<button onclick="celebrar()">No🥱</button>
             
 </button>
 </div>

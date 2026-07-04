@@ -141,9 +141,7 @@
         <div style="position: relative; width: 100%; height: 200px; display: flex; justify-content: center; align-items: center;">
 
 <button class="btn btn-yes" onclick="irPantalla3()">¡sí! ❤️</button>
-
-</div>
-
+  
 <button id="btnNo" class="btn btn-no" onmouseover="moverBotonNo()" ontouchstart="moverBotonNo()">No😒
             
 </button>

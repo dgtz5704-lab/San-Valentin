@@ -144,7 +144,7 @@
 
 <button class="btn btn-yes" onclick="irPantalla3()">¡sí! ❤️</button>
 
-<button onclick="celebrar()">No🥱</button>
+<button onclick="irpantalla3()">No🥱
 </div>
     </div>
     <div id="pantalla3" class="screen hidden" style="background: transparent; backdrop-filter: none;">

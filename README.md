@@ -139,9 +139,13 @@
         <p>Antes de ver su sorpresa, tiene que responder con total honestidad:</p>
         <h2 style="color: #ff4785; font-weight: 800; margin: 30px 0;">¿Verdad que quiere mucho a su yerno? 😇</h2>
         <div style="position: relative; width: 100%; height: 200px; display: flex; justify-content: center; align-items: center;">
-            <button class="btn btn-yes" onclick="irPantalla3()">¡Claro que sí! ❤️</button>
-            <button id="btnNo" class="btn btn-no" onmouseover="moverBotonNo()" ontouchstart="moverBotonNo()">No mucho 😒</button>
-        </div>
+
+<button class="btn btn-yes" onclick="irPantalla3()">¡sí! ❤️</button>
+
+<button id="btnNo" class="btn btn-no" onmouseover="moverBotonNo()" ontouchstart="moverBotonNo()">No😒
+            
+</button>
+</div>
     </div>
     <div id="pantalla3" class="screen hidden" style="background: transparent; backdrop-filter: none;">
         <div class="celebration-box">

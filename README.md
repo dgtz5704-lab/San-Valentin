@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPEhtml>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -226,7 +226,6 @@
             <div class="pill" onclick="abrirVentana()"><i class="fa-solid fa-book-open"></i> Cursos</div>
             <div class="pill" onclick="abrirVentana()"><i class="fa-solid fa-award"></i> Diplomado</div>
         </div>
-    </div>
     <!-- VENTANA APARTE (Modal Emergente) -->
     <div class="modal-overlay" id="ventanaAparte" onclick="cerrarVentanaFondo(event)">
         <div class="modal-window">
@@ -236,7 +235,6 @@
                 <div class="big-check-circle">
                     <i class="fa-solid fa-check"></i>
                 </div>
-            </div>
             <div class="feature-list">
                 <div class="feature-item">
                     <i class="fa-solid fa-check"></i> Contenido práctico

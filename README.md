@@ -1,15 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Universidad Innova</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">    
     <style>
         :root {
             --primary-blue: #021f54;
+            --neon-blue: #00d2ff; /* Color azul brillante para el neón */
             --check-green: #22a033;
-            /* Degradado ajustado a la imagen (azul más intenso a la izquierda, claro a la derecha) */
             --bg-gradient-start: #6ebcf0;
             --bg-gradient-end: #e6f5ff;
             --grey-circle: #8a9bb0;
@@ -29,34 +30,45 @@
             align-items: center;
             color: var(--primary-blue);
             overflow-x: hidden;
-            position: relative; /* Necesario para posicionar el logo libremente */
+            position: relative;
         }
         /* ==========================================
-           LOGO (Posicionado arriba a la izquierda)
+           LOGO RECONSTRUIDO (Idéntico a la imagen)
            ========================================== */
         .logo-container {
             position: absolute;
             top: 40px;
             left: 50px;
-            text-align: left;
+            display: flex;
+            flex-direction: column;
             z-index: 10;
         }
-        .logo-container h1 {
-            font-size: 4.5rem;
+        .logo-uni {
+            font-family: 'Arial Black', Impact, sans-serif; /* Letra ultra gruesa */
+            font-size: 5.5rem;
             font-weight: 900;
-            line-height: 0.9;
-            letter-spacing: -2px;
+            line-height: 0.75;
+            letter-spacing: -4px;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
         }
-        .logo-container p {
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            font-weight: 500;
-            line-height: 1.1;
-            margin-top: 5px;
+        .logo-sub {
+            font-size: 1.05rem;
+            font-weight: 400; /* Letra delgada */
             letter-spacing: 0.5px;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+        .logo-innova {
+            font-size: 1.45rem;
+            font-weight: 800; /* Letra negrita */
+            letter-spacing: 0.5px;
+            line-height: 1.1;
+            text-transform: uppercase;
+            margin-top: 2px;
         }
         /* ==========================================
-           MENÚ DE BOTONES (Centrado)
+           MENÚ DE BOTONES
            ========================================== */
         .pill-menu {
             display: flex;
@@ -66,7 +78,6 @@
             align-items: center;
             z-index: 5;
         }
-        /* Estilo 3D idéntico a la imagen */
         .pill {
             background: #ffffff;
             color: var(--primary-blue);
@@ -80,27 +91,37 @@
             cursor: pointer;
             width: 100%;
             max-width: 320px;
-            /* Sombra para efecto de pastilla 3D */
+            /* Agregamos un borde transparente para que no salte el tamaño al hacer hover */
+            border: 2px solid transparent; 
+            /* Sombra base 3D */
             box-shadow: 
                 10px 10px 20px rgba(0, 0, 0, 0.1), 
                 -5px -5px 15px rgba(255, 255, 255, 0.6),
                 inset 0 -2px 5px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s ease; /* Transición suave para todos los efectos */
         }
+        /* EFECTO NEÓN AL PASAR EL MOUSE */
         .pill:hover {
-            transform: translateY(-3px);
+            transform: translateY(-4px) scale(1.02);
+            border-color: var(--neon-blue); /* Borde azul brillante */
             box-shadow: 
-                12px 12px 25px rgba(0, 0, 0, 0.15), 
-                -5px -5px 15px rgba(255, 255, 255, 0.7),
-                inset 0 -2px 5px rgba(0, 0, 0, 0.05);
+                0 0 15px rgba(0, 210, 255, 0.6), /* Resplandor neón interior */
+                0 0 30px rgba(0, 210, 255, 0.4), /* Resplandor neón exterior */
+                12px 12px 25px rgba(0, 0, 0, 0.15), /* Sombra 3D pronunciada */
+                -5px -5px 15px rgba(255, 255, 255, 0.7);
         }
         .pill:active {
-            transform: translateY(0);
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.8);
         }
         .pill i {
             font-size: 1.5rem;
             width: 30px;
             text-align: center;
+            transition: color 0.3s ease;
+        }
+        .pill:hover i {
+            color: var(--neon-blue); /* El ícono también se ilumina un poco */
         }
         /* ==========================================
            VENTANA APARTE (Modal Emergente)
@@ -206,6 +227,7 @@
                 position: relative;
                 top: 0; left: 0;
                 margin-bottom: 3rem;
+                align-items: center;
                 text-align: center;
             }
             .content-header { flex-direction: column-reverse; text-align: center; gap: 1.5rem; }
@@ -220,9 +242,11 @@
 </head>
 <body>
     <div class="logo-container">
-        <h1>UNI</h1>
-        <p>Universidad<br>Del País<br>Innova</p>
-    </div>  
+        <div class="logo-uni">UNI</div>
+        <div class="logo-sub">UNIVERSIDAD</div>
+        <div class="logo-sub">DEL PAÍS</div>
+        <div class="logo-innova">INNOVA</div>
+    </div>   
     <div class="pill-menu">
         <div class="pill" onclick="abrirVentana()"><i class="fa-solid fa-graduation-cap"></i> Maestría</div>
         <div class="pill" onclick="abrirVentana()"><i class="fa-solid fa-star"></i> Especialidad</div>
@@ -232,14 +256,14 @@
         <div class="pill" onclick="abrirVentana()"><i class="fa-solid fa-award"></i> Diplomado</div>
     </div>
     <div class="modal-overlay" id="ventanaAparte" onclick="cerrarVentanaFondo(event)">
-        <div class="modal-window">         
+        <div class="modal-window">            
             <i class="fa-solid fa-xmark close-btn" onclick="cerrarVentana()"></i>
             <div class="content-header">
                 <h2>Fortalece<br>tu habilidad</h2>
                 <div class="big-check-circle">
                     <i class="fa-solid fa-check"></i>
                 </div>
-            </div>          
+            </div>            
             <div class="feature-list">
                 <div class="feature-item">
                     <i class="fa-solid fa-check"></i> Contenido práctico

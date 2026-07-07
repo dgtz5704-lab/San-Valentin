@@ -1,18 +1,17 @@
-<!DOCTYPEhtml>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Universidad Innova</title>
-    <!-- Cargamos FontAwesome para los íconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* Colores extraídos de las imágenes */
             --primary-blue: #021f54;
             --check-green: #22a033;
-            --bg-gradient-start: #83cbfd;
-            --bg-gradient-end: #d8f1ff;
+            /* Degradado ajustado a la imagen (azul más intenso a la izquierda, claro a la derecha) */
+            --bg-gradient-start: #6ebcf0;
+            --bg-gradient-end: #e6f5ff;
             --grey-circle: #8a9bb0;
             --text-grey: #333333;
         }
@@ -23,52 +22,51 @@
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
         body {
-            /* Fondo azul degradado */
-            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            background: linear-gradient(to right, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
             color: var(--primary-blue);
             overflow-x: hidden;
+            position: relative; /* Necesario para posicionar el logo libremente */
         }
         /* ==========================================
-           PANTALLA PRINCIPAL (Logo y Botones)
+           LOGO (Posicionado arriba a la izquierda)
            ========================================== */
-        .main-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3rem;
-            max-width: 800px;
-            width: 100%;
-        }
         .logo-container {
-            text-align: center;
+            position: absolute;
+            top: 40px;
+            left: 50px;
+            text-align: left;
+            z-index: 10;
         }
         .logo-container h1 {
-            font-size: 5rem;
+            font-size: 4.5rem;
             font-weight: 900;
-            line-height: 1;
-            letter-spacing: -3px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            line-height: 0.9;
+            letter-spacing: -2px;
         }
         .logo-container p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
             font-weight: 500;
-            line-height: 1.2;
+            line-height: 1.1;
+            margin-top: 5px;
             letter-spacing: 0.5px;
         }
+        /* ==========================================
+           MENÚ DE BOTONES (Centrado)
+           ========================================== */
         .pill-menu {
             display: flex;
             flex-direction: column;
             gap: 1.2rem;
             width: 100%;
             align-items: center;
+            z-index: 5;
         }
-        /* Estilo 3D de los botones */
+        /* Estilo 3D idéntico a la imagen */
         .pill {
             background: #ffffff;
             color: var(--primary-blue);
@@ -81,20 +79,20 @@
             gap: 1.5rem;
             cursor: pointer;
             width: 100%;
-            max-width: 350px;
+            max-width: 320px;
+            /* Sombra para efecto de pastilla 3D */
             box-shadow: 
-                0 10px 15px rgba(0, 0, 0, 0.08), 
-                0 4px 6px rgba(0, 0, 0, 0.04), 
-                inset 0 -4px 5px rgba(0, 0, 0, 0.05),
-                inset 0 4px 5px rgba(255, 255, 255, 0.8);
+                10px 10px 20px rgba(0, 0, 0, 0.1), 
+                -5px -5px 15px rgba(255, 255, 255, 0.6),
+                inset 0 -2px 5px rgba(0, 0, 0, 0.05);
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .pill:hover {
-            transform: translateY(-4px);
+            transform: translateY(-3px);
             box-shadow: 
-                0 15px 20px rgba(0, 0, 0, 0.12), 
-                0 6px 8px rgba(0, 0, 0, 0.06), 
-                inset 0 -4px 5px rgba(0, 0, 0, 0.05);
+                12px 12px 25px rgba(0, 0, 0, 0.15), 
+                -5px -5px 15px rgba(255, 255, 255, 0.7),
+                inset 0 -2px 5px rgba(0, 0, 0, 0.05);
         }
         .pill:active {
             transform: translateY(0);
@@ -111,7 +109,7 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(8px); /* Efecto de cristal esmerilado en el fondo */
+            backdrop-filter: blur(8px);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -133,7 +131,7 @@
             max-width: 650px;
             width: 90%;
             transform: scale(0.8) translateY(20px);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animación de rebote suave */
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .modal-overlay.active .modal-window {
             transform: scale(1) translateY(0);
@@ -151,7 +149,6 @@
             color: #ff4757;
             transform: rotate(90deg);
         }
-        /* Contenido de la ventana aparte */
         .content-header {
             display: flex;
             justify-content: space-between;
@@ -200,6 +197,17 @@
         }
         /* Responsividad para móviles */
         @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 2rem;
+            }
+            .logo-container {
+                position: relative;
+                top: 0; left: 0;
+                margin-bottom: 3rem;
+                text-align: center;
+            }
             .content-header { flex-direction: column-reverse; text-align: center; gap: 1.5rem; }
             .content-header h2 { font-size: 2.5rem; }
             .feature-item { font-size: 1.5rem; justify-content: center; }
@@ -211,30 +219,27 @@
     </style>
 </head>
 <body>
-    <!-- PANTALLA PRINCIPAL -->
-    <div class="main-container">
-        <div class="logo-container">
-            <h1>UNI</h1>
-            <p>Universidad<br>Del País<br>Innova</p>
-        </div>
-        <!-- Al hacer clic en cualquier botón, se abre la ventana aparte -->
-        <div class="pill-menu">
-            <div class="pill" onclick="abrirVentana()"><i class="fa-solid fa-graduation-cap"></i> Maestría</div>
-            <div class="pill" onclick="abrirVentana()"><i class="fa-solid fa-star"></i> Especialidad</div>
-            <div class="pill" onclick="abrirVentana()"><i class="fa-solid fa-graduation-cap"></i> Doctorado</div>
-            <div class="pill" onclick="abrirVentana()"><i class="fa-solid fa-certificate"></i> Certificación</div>
-            <div class="pill" onclick="abrirVentana()"><i class="fa-solid fa-book-open"></i> Cursos</div>
-            <div class="pill" onclick="abrirVentana()"><i class="fa-solid fa-award"></i> Diplomado</div>
-        </div>
-    <!-- VENTANA APARTE (Modal Emergente) -->
+    <div class="logo-container">
+        <h1>UNI</h1>
+        <p>Universidad<br>Del País<br>Innova</p>
+    </div>  
+    <div class="pill-menu">
+        <div class="pill" onclick="abrirVentana()"><i class="fa-solid fa-graduation-cap"></i> Maestría</div>
+        <div class="pill" onclick="abrirVentana()"><i class="fa-solid fa-star"></i> Especialidad</div>
+        <div class="pill" onclick="abrirVentana()"><i class="fa-solid fa-graduation-cap"></i> Doctorado</div>
+        <div class="pill" onclick="abrirVentana()"><i class="fa-solid fa-certificate"></i> Certificación</div>
+        <div class="pill" onclick="abrirVentana()"><i class="fa-solid fa-book-open"></i> Cursos</div>
+        <div class="pill" onclick="abrirVentana()"><i class="fa-solid fa-award"></i> Diplomado</div>
+    </div>
     <div class="modal-overlay" id="ventanaAparte" onclick="cerrarVentanaFondo(event)">
-        <div class="modal-window">
+        <div class="modal-window">         
             <i class="fa-solid fa-xmark close-btn" onclick="cerrarVentana()"></i>
             <div class="content-header">
                 <h2>Fortalece<br>tu habilidad</h2>
                 <div class="big-check-circle">
                     <i class="fa-solid fa-check"></i>
                 </div>
+            </div>          
             <div class="feature-list">
                 <div class="feature-item">
                     <i class="fa-solid fa-check"></i> Contenido práctico
@@ -249,7 +254,6 @@
         </div>
     </div>
     <script>
-        // Funciones para controlar la ventana aparte
         const modal = document.getElementById('ventanaAparte');
         function abrirVentana() {
             modal.classList.add('active');
@@ -257,12 +261,12 @@
         function cerrarVentana() {
             modal.classList.remove('active');
         }
-        // Permite cerrar la ventana si el usuario hace clic fuera de la tarjeta blanca (en el fondo oscuro)
         function cerrarVentanaFondo(event) {
             if (event.target === modal) {
                 cerrarVentana();
             }
         }
     </script>
+
 </body>
 </html>
